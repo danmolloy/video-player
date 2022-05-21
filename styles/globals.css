@@ -1,16 +1,92 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .index-div {
+    @apply w-full min-h-screen flex flex-col items-center p-2 dark:bg-slate-900 dark:text-slate-400 font-sans
+  }
+  .title-video-player-div {
+    @apply dark:bg-slate-800 p-2 px-8 pb-8 rounded-lg border dark:border-0 shadow
+  }
+  .video-player-div {
+   
+  }
+  .title {
+    @apply text-center
+  }
+  .header-div {
+    @apply w-full flex flex-col
+  }
+
+  /* Controls */
+  .vid-controls-div {
+    
+  }
+  .progress-div {
+    @apply p-2 flex flex-row justify-evenly items-center
+  }
+  .progress-range {
+    @apply  w-10/12
+  }
+  .control-btns-div {
+    @apply p-2 flex flex-row justify-evenly items-center h-16
+  }
+  .control-icons {
+    @apply w-8 h-8 text-xl flex items-center justify-center rounded-full text-blue-600 dark:text-slate-400 hover:bg-blue-100 active:bg-blue-200 dark:hover:bg-slate-600 dark:active:bg-slate-500
+  }
+  .next-icon {
+    @apply text-3xl
+  }
+  .speed-icon {
+    @apply text-2xl
+  }
+  .speed-div {
+    @apply flex flex-col items-center w-12
+  }
+  .speed-btn-div {
+    @apply flex flex-row text-xs 
+  }
+  .speed-btn {
+    @apply p-1 w-4 flex items-center justify-center hover:bg-blue-100 active:bg-blue-200
+  }
+
+
+  .loading-div {
+    @apply w-16 flex flex-col items-center 
+  }
+  .loading-wheel {
+    @apply w-6 h-6 text-3xl flex animate-spin items-center justify-center rounded-full text-blue-600
+  }
+
+  /* Playlist and Info*/
+  .playlist-div {
+    @apply flex flex-col border dark:border-0 dark:bg-slate-800 rounded-md shadow p-2 my-2
+  }
+  .playlist-items {
+    @apply flex flex-row flex-wrap
+  }
+  .playlist-item {
+    @apply border dark:border-0 p-2 m-1 hover:bg-blue-50 active:bg-blue-100 rounded shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:active:bg-slate-500
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.input-range {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  height: 3px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
 }
+/* color: rgb(37 99 235); */
 
-* {
-  box-sizing: border-box;
+.input-range::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 5px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: rgb(37 99 235); /* Green background */
+    cursor: pointer; /* Cursor on hover */
 }
