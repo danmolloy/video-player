@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
-import Hls from 'hls.js'
-import { useEffect, useState } from 'react'
-import VideoPlayer from '../components/videoPlayer'
-import Playlist from '../components/playlist'
-import Head from 'next/head'
-import Header from '../components/header'
+import type { NextPage } from "next"
+import Hls from "hls.js"
+import { useEffect, useState } from "react"
+import VideoPlayer from "../components/videoPlayer"
+import Playlist from "../components/playlist"
+import Head from "next/head"
+import Header from "../components/header"
 
 
 const Home: NextPage = () => {
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
   const [indexNum, setIndexNum] = useState(0)
 
   const setUp = (index: number | null = null) => {
-    let video: any = document.getElementById('video');
+    let video: any = document.getElementById("video");
     let videoSrc = videoArr[index ? index : 0].src
     
     const mp4Regex = /.mp4$/g;
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       hls.attachMedia(video);
       setIndexNum(index ? index : 0)
 
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = videoSrc;
     }
   }
@@ -52,18 +52,18 @@ const Home: NextPage = () => {
 
   const getName = (url: string) => {
     const fileNameRegex = /(?<=\/)\w+(?=.[a-z0-9$])/gi;
-    let fileName = url.match(fileNameRegex)?.pop()?.replace(/_/g, ' ');
+    let fileName = url.match(fileNameRegex)?.pop()?.replace(/_/g, " ");
     let arr = fileName?.split(" ");
     for (let i = 0; i < arr!.length; i++) {
       arr![i] = arr![i].charAt(0).toUpperCase() + arr![i].slice(1)
     }
-    return arr?.toString().replace(/,/g, ' ');
+    return arr?.toString().replace(/,/g, " ");
   }
 
   return (
     <div className="index-div">
       <Head>
-        <title>Daniel Molloy's Video Player</title>
+        <title>Daniel Molloy Video Player</title>
       </Head>
       <Header />
       <VideoPlayer 
