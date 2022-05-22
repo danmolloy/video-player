@@ -5,8 +5,23 @@ import { BiSkipNext } from 'react-icons/bi'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { MdSpeed } from 'react-icons/md'
 
+type ControlsType = {
+  videoArr: {src: string, id: number, img: string}[];
+  indexNum: number;
+  setUp: Function;
+  videoProgress: number;
+  videoLength: number;
+  videoState: string;
+  playPause: Function;
+  videoSpeed: number;
+  videoVolume: number;
+  changeVolume: Function;
+  fullScreen: Function;
+  changeProgress: Function;
+  setSpeed: Function;
+}
 
-export default function VideoControls(props: any) {
+export default function VideoControls(props: ControlsType) {
   const [videoPlaying, setVideoPlaying] = useState(false)
   const [showSpeed, setShowSpeed] = useState(false)
 
@@ -36,6 +51,12 @@ export default function VideoControls(props: any) {
     
   }
 
+  const handleNext = () => {
+    setVideoPlaying(false);
+    props.indexNum == props.videoArr.length - 1 
+    ? props.setUp(0) 
+    : props.setUp(props.indexNum + 1)
+  }
 
   return (
     <div className="vid-controls-div">
@@ -78,7 +99,9 @@ export default function VideoControls(props: any) {
             <MdSpeed />
           </button>
         </div>
-        <button title="Next Video" onClick={() => props.setUp(props.indexNum + 1)} className="control-icons next-icon">
+        <button title="Next Video" 
+          onClick={() => handleNext()} 
+          className="control-icons next-icon">
           <BiSkipNext />
         </button>
       </div>
