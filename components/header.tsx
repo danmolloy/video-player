@@ -17,10 +17,10 @@ export default function Header() {
   return (
     <div className='header-div'>
       {darkMode
-      ? <button className='self-end text-yellow-200 hover:text-yellow-400 active:text-yellow-200 text-2xl' onClick={() => handleDark('light')}>
+      ? <button className='flex items-center justify-center text-yellow-200 hover:text-yellow-400 active:text-yellow-200 text-2xl  w-12 h-12 p-1 m-2' onClick={() => handleDark('light')}>
           <MdOutlineDarkMode />
         </button>
-      :   <button className='self-end text-slate-800 hover:text-slate-600 active:text-slate-800 text-2xl' onClick={() => handleDark('dark')}>
+      :   <button className='flex items-center justify-center text-slate-800 hover:text-slate-600 active:text-slate-800 text-2xl  w-12 h-12 p-1 m-2' onClick={() => handleDark('dark')}>
           <MdDarkMode />
         </button>
       }

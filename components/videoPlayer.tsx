@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import VideoControls from "./videoControls";
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 type PlayerProps = {
   videoArr: {src: string, id: number, img: string}[], 
@@ -23,7 +22,6 @@ export default function VideoPlayer(props: PlayerProps) {
 
   useEffect(() => {
     let video: any = document.getElementById('video');
-
     video.volume = videoVolume
     video.currentTime = videoProgress
     video.playbackRate = videoSpeed
@@ -62,12 +60,10 @@ export default function VideoPlayer(props: PlayerProps) {
         setVideoLength(0)
       })
     })
-
-  }, [])
+  }, [props.indexNum])
 
     useEffect(() => {
       let video: any = document.getElementById('video');
-
       video.addEventListener('ended', () => {
         props.indexNum + 1 > props.videoArr.length - 1
         ? props.setUp(0)
@@ -78,12 +74,8 @@ export default function VideoPlayer(props: PlayerProps) {
        }) 
     }, [props.indexNum])
 
-
-
-
   const playPause = () => {
     let video: any = document.getElementById('video');
-
     if (video.paused || video.ended) {
       video.play();
     } else {
@@ -93,14 +85,11 @@ export default function VideoPlayer(props: PlayerProps) {
 
   const fullScreen = () => {
     let video: any = document.getElementById('video');
-
     video.requestFullscreen()
   }
 
-
   const changeVolume = (volLevel: number) => {
     let video: any = document.getElementById('video');
-
     setVideoVolume(volLevel)
     video.volume = volLevel
   }
@@ -109,7 +98,6 @@ export default function VideoPlayer(props: PlayerProps) {
     let video: any = document.getElementById('video');
     setVideoProgress(progressPoint)
     video.currentTime = progressPoint
-    
   }
 
   const setSpeed = (e: number) => {
@@ -118,30 +106,29 @@ export default function VideoPlayer(props: PlayerProps) {
     video.playbackRate = e
   }
 
-
   return (
     <div className="title-video-player-div">
       <h1 className="title">{props.getName(props.videoArr[props.indexNum].src)}</h1>
       <div className="video-player-div">
-      <video id="video" width="640" height="480">
-        <source id="videoSource" src={props.videoArr[props.indexNum].src} type="video/mp4"/>
-        Unfortunately you can not play this video.
-      </video>
-      <VideoControls
-        videoArr={props.videoArr}
-        videoSpeed={videoSpeed}
-        setSpeed={(e: number) => setSpeed(e)}
-        videoState={videoState}
-        indexNum={props.indexNum}
-        setUp={(e: number | null) => props.setUp(e)}
-        videoProgress={videoProgress}
-        videoVolume={videoVolume}
-        videoLength={videoLength}
-        playPause={() => playPause()}
-        fullScreen={() => fullScreen()}
-        changeVolume={(e: number) => changeVolume(e)}
-        changeProgress={(e: number) => changeProgress(e)}
-        />
+        <video id="video" width="640" height="480" >
+          <source id="videoSource" src={props.videoArr[props.indexNum].src} type="video/mp4"/>
+          Unfortunately you can not play this video.
+        </video>
+        <VideoControls
+          videoArr={props.videoArr}
+          videoSpeed={videoSpeed}
+          setSpeed={(e: number) => setSpeed(e)}
+          videoState={videoState}
+          indexNum={props.indexNum}
+          setUp={(e: number | null) => props.setUp(e)}
+          videoProgress={videoProgress}
+          videoVolume={videoVolume}
+          videoLength={videoLength}
+          playPause={() => playPause()}
+          fullScreen={() => fullScreen()}
+          changeVolume={(e: number) => changeVolume(e)}
+          changeProgress={(e: number) => changeProgress(e)}
+          />
         </div>
     </div>
   )

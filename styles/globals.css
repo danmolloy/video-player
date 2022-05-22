@@ -16,7 +16,7 @@
     @apply text-center
   }
   .header-div {
-    @apply w-full flex flex-col
+    @apply w-screen flex flex-col 
   }
 
   /* Controls */

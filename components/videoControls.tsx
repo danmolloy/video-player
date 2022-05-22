@@ -34,8 +34,12 @@ export default function VideoControls(props: ControlsType) {
       setVideoPlaying(false)
     })
     return () => {
-      video.removeEventListener("play",() => {})
-      video.removeEventListener("pause",() => {})
+      video.removeEventListener("play",() => {
+        setVideoPlaying(false)
+      })
+      video.removeEventListener("pause",() => {
+        setVideoPlaying(false)
+      })
     }
   }, [])
 
@@ -48,7 +52,6 @@ export default function VideoControls(props: ControlsType) {
     } else {
       return (`${minutes}:${seconds}`)
     }
-    
   }
 
   const handleNext = () => {
@@ -62,7 +65,7 @@ export default function VideoControls(props: ControlsType) {
     <div className="vid-controls-div">
       <div className='progress-div'>
         <p>{getMinutes(props.videoProgress)}</p>
-        <input title="Playback Progress" className="progress-range input-range" type="range" min={0} max={props.videoLength} step={5} value={props.videoProgress} onChange={e => props.changeProgress(Number(e.target.value))}/>
+          <input title="Playback Progress" className="progress-range input-range" type="range" min={0} max={props.videoLength} step={5} value={props.videoProgress} onChange={e => props.changeProgress(Number(e.target.value))}/>
         <p>{getMinutes(props.videoLength)}</p>
       </div>
       <div className='control-btns-div'>
@@ -83,7 +86,6 @@ export default function VideoControls(props: ControlsType) {
             : <GoUnmute />}
           </button>
           <input title="Volume" className='volume-control input-range' type="range" min={0} max={1} step={0.01} value={props.videoVolume} onChange={e => props.changeVolume(Number(e.target.value))}/>
-
         </div>
         <button title="Fullscreen" onClick={() => props.fullScreen()} className="control-icons">
           <BsArrowsFullscreen />
