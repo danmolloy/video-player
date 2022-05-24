@@ -20,12 +20,15 @@ A simple video player, using React and Hls.js.
   - Elapsed time & total length in HH:MM
   - Next video button
 - Playlist items show video thumbnail
+- Responsive CSS design
 - Night mode toggle
 
 ## Stack
 - React
 - Next.js
 - Hls.js
-- Tailwind
+- SWR
 - TypeScript
+- Tailwind
+- React Icons
 

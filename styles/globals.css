@@ -4,16 +4,16 @@
 
 @layer components {
   .index-div {
-    @apply w-full min-h-screen flex flex-col items-center p-2 dark:bg-slate-900 dark:text-slate-400 font-sans
+    @apply w-full min-h-screen flex flex-col items-center sm:p-2 dark:bg-slate-900 dark:text-slate-400 font-sans
   }
   .title-video-player-div {
-    @apply dark:bg-slate-800 p-2 px-8 pb-8 rounded-lg border dark:border-0 shadow
+    @apply dark:bg-slate-800 sm:p-2 sm:px-8 sm:pb-8 rounded-lg sm:border dark:border-0 sm:shadow
   }
   .video-player-div {
    
   }
   .title {
-    @apply text-center
+    @apply text-center p-2
   }
   .header-div {
     @apply w-screen flex flex-col 
@@ -61,13 +61,13 @@
 
   /* Playlist and Info*/
   .playlist-div {
-    @apply flex flex-col border dark:border-0 dark:bg-slate-800 rounded-md shadow p-2 my-2
+    @apply flex items-center flex-col border dark:border-0 dark:bg-slate-800 rounded-md shadow p-2 sm:my-2 w-screen sm:w-auto
   }
   .playlist-items {
-    @apply flex flex-row flex-wrap
+    @apply flex flex-col sm:flex-row flex-wrap
   }
   .playlist-item {
-    @apply border dark:border-0 p-2 m-1 hover:bg-blue-50 active:bg-blue-100 rounded shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:active:bg-slate-500
+    @apply border dark:border-0 p-2 m-2 hover:bg-blue-50 active:bg-blue-100 rounded shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600 dark:active:bg-slate-500
   }
 }
 

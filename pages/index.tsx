@@ -5,29 +5,19 @@ import VideoPlayer from "../components/videoPlayer"
 import Playlist from "../components/playlist"
 import Head from "next/head"
 import Header from "../components/header"
+import useSWR from 'swr'
 
+const fetcher: any = (url: string) => fetch(url).then((res) => res.json())
 
 const Home: NextPage = () => {
-  const [videoArr, setVideoArr] = useState([
-    {
-      src: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8",
-      img: "/image1.png",
-      id: 0
-    },
-    {
-    src: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/index_0_av.m3u8",
-    img: "/image3.png",
-    id: 1
-  },
-    { src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    img: "/image2.png",
-    id: 2
-  },
-  ])
+  const { data, error } = useSWR("/api/videos", fetcher)
   const [indexNum, setIndexNum] = useState(0)
+  
   let hls: any;
   let video: any;
 
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
 
   const setUp = (index: number) => {
     if (video !== undefined) {
@@ -41,7 +31,7 @@ const Home: NextPage = () => {
     } 
 
     video = document.getElementById("video");
-    let videoSrc = videoArr[index].src
+    let videoSrc = data.videos[index].src
     setIndexNum(index)
     const mp4Regex = /.mp4$/g;
     const m3u8Regex = /.m3u8$/g;
@@ -78,13 +68,13 @@ const Home: NextPage = () => {
       <VideoPlayer 
         getName={(e: string) => getName(e)}
         indexNum={indexNum}
-        videoArr={videoArr} 
+        videoArr={data.videos} 
         setUp={(e: any) => setUp(e)}
         />
       <Playlist 
         indexNum={indexNum}
         getName={(e: string) => getName(e)}
-        videoArr={videoArr} 
+        videoArr={data.videos} 
         setUp={(e: any) => setUp(e)}/>
     </div>
   )

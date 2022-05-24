@@ -64,9 +64,9 @@ export default function VideoControls(props: ControlsType) {
   return (
     <div className="vid-controls-div">
       <div className='progress-div'>
-        <p>{getMinutes(props.videoProgress)}</p>
+        <p className='p-1'>{getMinutes(props.videoProgress)}</p>
           <input title="Playback Progress" className="progress-range input-range" type="range" min={0} max={props.videoLength} step={5} value={props.videoProgress} onChange={e => props.changeProgress(Number(e.target.value))}/>
-        <p>{getMinutes(props.videoLength)}</p>
+        <p className='p-1'>{getMinutes(props.videoLength)}</p>
       </div>
       <div className='control-btns-div'>
       {props.videoState === "Loading.." 
